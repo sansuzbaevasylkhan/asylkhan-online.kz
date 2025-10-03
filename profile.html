@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      border-bottom: 2px solid #0ff;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    header h1 {
+      font-size: 20px;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .content {
+      padding-top: 80px;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #0ff;
+      border-radius: 8px;
+      background: #111;
+      color: #0ff;
+      margin-bottom: 15px;
+      font-size: 14px;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #fff;
+      box-shadow: 0 0 15px #0ff, 0 0 25px #0ff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #0ff;
+      border-radius: 8px;
+      background: transparent;
+      color: #0ff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    .btn:hover {
+      background: #0ff;
+      color: #000;
+      text-shadow: 0 0 10px #fff;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(20,20,20,0.95);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+        border-left: 2px solid #0ff;
+        border-radius: 10px 0 0 10px;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.4s ease;
+        z-index: 1003;
+      }
+
+      nav.active {
+        display: flex;
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Asylkhan Online.kz</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+      <a href="index2.html">Басты бет</a>
+      <a href="courses2.html">Курстар</a>
+      <a href="social.html">Әлеуметтік желілерім</a>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h2>Менің профилім</h2>
+    <form id="profileForm">
+      <label>Аты-жөні</label>
+      <input type="text" id="name" value="Асылхан Сансызбаев" required>
+
+      <label>Телефон нөмірі</label>
+      <input type="tel" id="phone" value="+7 777 777 7777" required>
+
+      <label>Пароль</label>
+      <input type="password" id="password" value="qwerty123" required>
+
+      <button type="submit" class="btn">Өңдеу дегенді басыныз!</button>
+    </form>
+  </div>
+
+<script>
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+  const overlay = document.querySelector(".overlay");
+
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener("click", () => {
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+
+  // Профильді Telegram-ға жіберу
+  document.getElementById("profileForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const password = document.getElementById("password").value;
+
+    const message = `📝 Жаңа профиль өзгертілді:%0A👤 Аты-жөні: ${name}%0A📞 Телефон: ${phone}%0A🔒 Пароль: ${password}`;
+
+    fetch(`https://api.telegram.org/bot8496747178:AAHOqSagYIjUTzCd_6JE7pq-XJ0L_XtzOS8/sendMessage?chat_id=5166519286&text=${message}`)
+      .then(response => {
+        if(response.ok) {
+          alert("Өзгерістер Telegram-ға жіберілді ✅");
+        } else {
+          alert("Қате кетті, ботты тексер.");
+        }
+      })
+      .catch(error => alert("Қате кетті: " + error));
+  });
+</script>
+
+</body>
+</html>

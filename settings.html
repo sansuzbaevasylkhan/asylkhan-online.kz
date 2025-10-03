@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Баптаулар | Настройки</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d; 
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {background: #f5f5f5; color: #000;}
+
+    header {
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 1px solid cyan;
+      background: #111;
+      color: cyan;
+    }
+    body.light header {background: #eaeaea; color: #007777; border-color: #007777;}
+
+    .container {padding: 20px;}
+    .setting-item {
+      background: #1a1a1a;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px cyan;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    body.light .setting-item {background: #fff; box-shadow: 0 0 10px #007777;}
+
+    /* Switch */
+    .switch {position: relative; display: inline-block; width: 50px; height: 25px;}
+    .switch input {opacity: 0; width: 0; height: 0;}
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: gray; transition: .4s; border-radius: 25px;
+    }
+    .slider:before {
+      content: ""; position: absolute; height: 18px; width: 18px;
+      left: 4px; bottom: 3.5px; background: white; border-radius: 50%;
+      transition: .4s;
+    }
+    input:checked + .slider {background: cyan;}
+    input:checked + .slider:before {transform: translateX(24px);}
+    
+    .btn-back {
+      display: block; margin: 20px auto; padding: 12px 20px;
+      background: cyan; color: black; font-weight: bold;
+      border-radius: 8px; text-align: center; width: 200px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="title">⚙️ Баптаулар</header>
+
+  <div class="container">
+    <div class="setting-item">
+      <span id="mode-text">Қараңғы режим / Ақ режим</span>
+      <label class="switch">
+        <input type="checkbox" id="mode-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <span id="lang-label">Тіл:</span>
+      <select id="language">
+        <option value="kk">Қазақша</option>
+        <option value="ru">Орысша</option>
+      </select>
+    </div>
+  </div>
+
+  <a href="index2.html" class="btn-back" id="back-btn">← Артқа</a>
+
+  <script>
+    const langSelect = document.getElementById("language");
+    const modeToggle = document.getElementById("mode-toggle");
+
+    function applySettings() {
+      const mode = localStorage.getItem("mode") || "dark";
+      const lang = localStorage.getItem("lang") || "kk";
+
+      document.body.classList.toggle("light", mode === "light");
+      modeToggle.checked = (mode === "light");
+      langSelect.value = lang;
+
+      if (lang === "kk") {
+        document.getElementById("title").textContent = "⚙️ Баптаулар";
+        document.getElementById("mode-text").textContent = "Қараңғы режим / Ақ режим";
+        document.getElementById("lang-label").textContent = "Тіл:";
+        document.getElementById("back-btn").textContent = "← Артқа";
+      } else {
+        document.getElementById("title").textContent = "⚙️ Настройки";
+        document.getElementById("mode-text").textContent = "Тёмный режим / Светлый режим";
+        document.getElementById("lang-label").textContent = "Язык:";
+        document.getElementById("back-btn").textContent = "← Назад";
+      }
+    }
+
+    // оқиғалар
+    modeToggle.addEventListener("change", () => {
+      localStorage.setItem("mode", modeToggle.checked ? "light" : "dark");
+      applySettings();
+    });
+    langSelect.addEventListener("change", () => {
+      localStorage.setItem("lang", langSelect.value);
+      applySettings();
+    });
+
+    // бірінші рет қолданғанда
+    applySettings();
+  </script>
+</body>
+</html>

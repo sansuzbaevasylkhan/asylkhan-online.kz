@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Сабақтары</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {background: #f5f5f5; color: #000;}
+
+    /* Хэдер */
+    header {
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1001;
+      border-bottom: 2px solid #0ff;
+    }
+    header h1 {font-size: 18px; color: #0ff;}
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    /* Профиль */
+    .profile {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: url("https://cdn-icons-png.flaticon.com/512/847/847969.png") center/cover no-repeat;
+      border: 2px solid #0ff;
+      cursor: pointer;
+    }
+    .profile-menu {
+      display: none;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      background: rgba(20,20,20,0.95);
+      border: 1px solid #0ff;
+      border-radius: 8px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+    .profile-menu a {
+      display: block;
+      padding: 10px;
+      color: #0ff;
+      text-decoration: none;
+    }
+    .profile-menu a:hover {
+      background: rgba(0,255,255,0.1);
+      color: #fff;
+    }
+
+    /* Гамбургер */
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0ff;
+    }
+    .overlay {
+      display: none;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+    .overlay.active {display: block;}
+
+    /* Контент */
+    .content {padding-top: 70px;}
+
+    /* Сабақтар */
+    .lessons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 15px;
+    }
+    .lesson {
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      transition: 0.3s;
+    }
+
+    /* 16:9 сурет форматы */
+    .lesson img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .lesson-content {
+      padding: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .lesson h3 {margin: 0 0 8px; font-size: 16px; color: #0ff;}
+    .lesson p {font-size: 14px; margin: 0 0 12px; flex: 1;}
+    .lesson a {
+      text-align: center;
+      display: block;
+      padding: 10px;
+      background: #0ff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .lesson a:hover {background: #00cccc;}
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(20,20,20,0.95);
+        position: absolute;
+        top: 60px; right: 0;
+        width: 200px;
+        padding: 15px;
+        border-radius: 8px 0 0 8px;
+      }
+      nav.active {display: flex;}
+      .menu-toggle {display: block;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📺 YouTube Сабақтары</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+      <div class="profile"></div>
+      <div class="profile-menu">
+        <a href="profile.html" id="nav-profile">👤 Профиль</a>
+        <a href="settings.html" id="nav-settings">⚙️ Баптаулар</a>
+        <a href="#" id="nav-logout">🚪 Шығу</a>
+      </div>
+      <a href="index2.html" id="nav-home">Басты бет</a>
+      <a href="courses2.html" id="nav-courses">Курстар</a>
+      <a href="social2.html" id="nav-social">Әлеуметтік желілерім</a>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <div class="lessons">
+      <div class="lesson">
+        <img src="1 sabaq.jpg" alt="Сабақ 1">
+        <div class="lesson-content">
+          <h3>Сабақ 1</h3>
+          <p>YouTube каналына кіріспе, негіздері.</p>
+          <a href="youtube-1sabaq.html">Сабақты көру</a>
+        </div>
+      </div>
+
+      <div class="lesson">
+        <img src="2 sabaq.jpg" alt="Сабақ 2">
+        <div class="lesson-content">
+          <h3>Сабақ 2</h3>
+          <p>Контент жоспарлау және тақырып таңдау.</p>
+          <a href="youtube-2sabaq.html">Сабақты көру</a>
+        </div>
+      </div>
+
+      <div class="lesson">
+        <img src="3 sabaq.jpg" alt="Сабақ 3">
+        <div class="lesson-content">
+          <h3>Сабақ 3</h3>
+          <p>Видео түсіру техникасы.</p>
+          <a href="youtube-3sabaq.html">Сабақты көру</a>
+        </div>
+      </div>
+
+      <div class="lesson"><img src="4 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 4</h3><p>Монтаж негіздері.</p><a href="youtube-4sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="5 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 5</h3><p>Қызықты thumbnail жасау.</p><a href="youtube-5sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="6 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 6</h3><p>SEO және кілт сөздер.</p><a href="youtube-6sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="7 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 7</h3><p>Аудитория тарту тәсілдері.</p><a href="youtube-7sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="8 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 8</h3><p>Жарнама және табыс табу.</p><a href="youtube-8sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="9 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 9</h3><p>YouTube Analytics қолдану.</p><a href="youtube-9sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="10 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 10</h3><p>Авторлық құқық және қауіпсіздік.</p><a href="youtube-10sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="11 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 11</h3><p>Аудиториямен байланыс.</p><a href="youtube-11sabaq.html">Сабақты көру</a></div></div>
+      <div class="lesson"><img src="12 sabaq.jpg"><div class="lesson-content"><h3>Сабақ 12</h3><p>Арнаны дамыту стратегиясы.</p><a href="youtube-12sabaq.html">Сабақты көру</a></div></div>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+    const overlay = document.querySelector(".overlay");
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+    overlay.addEventListener("click", () => {
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    const profile = document.querySelector(".profile");
+    const profileMenu = document.querySelector(".profile-menu");
+    profile.addEventListener("click", () => {
+      profileMenu.style.display = profileMenu.style.display === "block" ? "none" : "block";
+    });
+    document.addEventListener("click", (e) => {
+      if (!profile.contains(e.target) && !profileMenu.contains(e.target)) {
+        profileMenu.style.display = "none";
+      }
+    });
+
+    function applySettings() {
+      const mode = localStorage.getItem("mode") || "dark";
+      const lang = localStorage.getItem("lang") || "kk";
+      document.body.classList.toggle("light", mode === "light");
+
+      if (lang === "kk") {
+        document.getElementById("nav-home").textContent = "Басты бет";
+        document.getElementById("nav-courses").textContent = "Курстар";
+        document.getElementById("nav-social").textContent = "Әлеуметтік желілерім";
+        document.getElementById("nav-settings").textContent = "⚙️ Баптаулар";
+        document.getElementById("nav-logout").textContent = "🚪 Шығу";
+      } else {
+        document.getElementById("nav-home").textContent = "Главная";
+        document.getElementById("nav-courses").textContent = "Курсы";
+        document.getElementById("nav-social").textContent = "Мои соц.сети";
+        document.getElementById("nav-settings").textContent = "⚙️ Настройки";
+        document.getElementById("nav-logout").textContent = "🚪 Выйти";
+      }
+    }
+    applySettings();
+  </script>
+</body>
+</html>

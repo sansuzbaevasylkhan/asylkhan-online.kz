@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ — Қолданушылар</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg,#0f172a,#1e293b);
+      color: #fff;
+      padding: 20px;
+      margin: 0;
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    table {
+      width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.05);
+      border-radius: 10px; overflow: hidden;
+    }
+    th, td {
+      padding: 12px; border: 1px solid #444; text-align: left; font-size: 14px;
+    }
+    th { background: rgba(255,255,255,0.1); }
+    tr:hover { background: rgba(255,255,255,0.08); }
+    button {
+      padding: 6px 10px; border: none; border-radius: 6px;
+      cursor: pointer; margin-right: 5px; font-size: 12px;
+    }
+    .give { background: #22c55e; color: #fff; }
+    .delete { background: #ef4444; color: #fff; }
+  </style>
+</head>
+<body>
+  <h2>Админ панель — Қолданушылар</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Аты-жөні</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Курс мерзімі</th>
+        <th>Әрекет</th>
+      </tr>
+    </thead>
+    <tbody id="usersTable"></tbody>
+  </table>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, updateDoc, deleteDoc, doc } 
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+  // 🔑 Firebase баптауы
+  const firebaseConfig = {
+    apiKey: "AIzaSyBHgnafjGIl2wLfUTLkx7OABFoOAo1iIM4",
+    authDomain: "asylkhan-online-kz.firebaseapp.com",
+    projectId: "asylkhan-online-kz",
+    storageBucket: "asylkhan-online-kz.appspot.com",
+    messagingSenderId: "227768025129",
+    appId: "1:227768025129:web:e6c355e71006d70018dc38",
+    measurementId: "G-1BEDZ5FNX0"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 🔹 Қолданушыларды шығару
+  async function loadUsers(){
+    const querySnapshot = await getDocs(collection(db, "users"));
+    const table = document.getElementById("usersTable");
+    table.innerHTML = "";
+
+    querySnapshot.forEach((docSnap) => {
+      const user = docSnap.data();
+      const tr = document.createElement("tr");
+
+      let courseUntil = user.courseUntil 
+        ? new Date(user.courseUntil.seconds * 1000).toLocaleDateString() 
+        : "Берілмеген";
+
+      tr.innerHTML = `
+        <td>${user.fullname}</td>
+        <td>${user.email}</td>
+        <td>${user.phone}</td>
+        <td>${courseUntil}</td>
+        <td>
+          <button class="give" onclick="giveCourse('${docSnap.id}')">+1 жыл</button>
+          <button class="delete" onclick="deleteUser('${docSnap.id}')">Өшіру</button>
+        </td>
+      `;
+      table.appendChild(tr);
+    });
+  }
+
+  // 🔹 Курс беру (1 жылға)
+  window.giveCourse = async function(uid){
+    const untilDate = new Date();
+    untilDate.setFullYear(untilDate.getFullYear() + 1);
+
+    await updateDoc(doc(db, "users", uid), {
+      courseUntil: untilDate
+    });
+    alert("Курс 1 жылға берілді ✅");
+    loadUsers();
+  }
+
+  // 🔹 Қолданушыны өшіру
+  window.deleteUser = async function(uid){
+    if(confirm("Бұл қолданушыны өшіргіңіз келе ме?")){
+      await deleteDoc(doc(db, "users", uid));
+      alert("Өшірілді ❌");
+      loadUsers();
+    }
+  }
+
+  loadUsers();
+</script>
+</body>
+</html>

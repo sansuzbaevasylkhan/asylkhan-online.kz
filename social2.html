@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Әлеуметтік желілерім - Asylkhan Online.kz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      border-bottom: 2px solid #0ff;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    header h1 {
+      font-size: 20px;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff;
+    }
+
+    /* Профиль иконка */
+    .profile {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: url("https://cdn-icons-png.flaticon.com/512/847/847969.png") center/cover no-repeat;
+      border: 2px solid #0ff;
+      cursor: pointer;
+    }
+
+    .profile-menu {
+      display: none;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      background: rgba(20,20,20,0.95);
+      border: 1px solid #0ff;
+      border-radius: 8px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+
+    .profile-menu a {
+      display: block;
+      padding: 10px;
+      color: #0ff;
+      text-decoration: none;
+    }
+
+    .profile-menu a:hover {
+      background: rgba(0,255,255,0.1);
+      color: #fff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 35px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+
+    .overlay.active {display: block;}
+
+    .content {
+      padding-top: 90px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+      margin-bottom: 20px;
+    }
+
+    .social-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 15px;
+    }
+
+    .social-card {
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #0ff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+
+    .social-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    .social-card img {
+      width: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .social-card a {
+      color: #0ff;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    .social-card a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(20,20,20,0.95);
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+        border-radius: 10px 0 0 10px;
+        border-left: 2px solid #0ff;
+      }
+      nav.active {display: flex;}
+      .menu-toggle {display: block;}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Asylkhan Online.kz</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+      <div class="profile"></div>
+      <div class="profile-menu">
+        <a href="profile.html" id="nav-profile">👤 Профиль</a>
+        <a href="settings.html" id="nav-settings">⚙️ Баптаулар</a>
+        <a href="#" id="nav-logout">🚪 Шығу</a>
+      </div>
+      <a href="index2.html" id="nav-home">Басты бет</a>
+      <a href="courses2.html" id="nav-courses">Курстар</a>
+      <a href="social2.html" id="nav-social">Әлеуметтік желілерім</a>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h2>Әлеуметтік желілерім</h2>
+    <div class="social-cards">
+      <div class="social-card">
+        <img src="3.png" alt="YouTube">
+        <a href="https://youtube.com/@asylkhanonlinekz" target="_blank">YouTube арнасы</a>
+      </div>
+      <div class="social-card">
+        <img src="2.png" alt="Instagram">
+        <a href="https://www.instagram.com/gulbanu_huashen" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // гамбургер меню
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+    const overlay = document.querySelector(".overlay");
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+    overlay.addEventListener("click", () => {
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    // профиль меню
+    const profile = document.querySelector(".profile");
+    const profileMenu = document.querySelector(".profile-menu");
+    profile.addEventListener("click", () => {
+      profileMenu.style.display = profileMenu.style.display === "block" ? "none" : "block";
+    });
+    document.addEventListener("click", (e) => {
+      if (!profile.contains(e.target) && !profileMenu.contains(e.target)) {
+        profileMenu.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

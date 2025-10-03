@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кіру</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #111111);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background: rgba(17,17,17,0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      border-bottom: 2px solid #0ff;
+      box-shadow: 0 0 20px #0ff;
+      backdrop-filter: blur(8px);
+    }
+
+    header h1 {
+      font-size: 22px;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .content {
+      padding-top: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .login-form {
+      background: rgba(255,255,255,0.05);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #0ff;
+      width: 100%;
+      max-width: 400px;
+      text-align: left;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px #0ff; }
+      to { box-shadow: 0 0 30px #0ff; }
+    }
+
+    .login-form h2 {
+      color: #0ff;
+      text-align: center;
+      margin-bottom: 25px;
+      text-shadow: 0 0 15px #0ff;
+    }
+
+    .login-form label {
+      display: block;
+      margin-bottom: 5px;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+      text-shadow: 0 0 5px #0ff;
+      transition: all 0.3s;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      box-shadow: 0 0 15px #0ff;
+      border-color: #0ff;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 15px;
+      background: transparent;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+      color: #0ff;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      text-shadow: 0 0 5px #0ff;
+      transition: all 0.3s;
+    }
+
+    .login-form button:hover {
+      background: #0ff;
+      color: #000;
+      box-shadow: 0 0 20px #0ff;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: #ff4444;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .register-link {
+      margin-top: 15px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .register-link a {
+      color: #0ff;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(20,20,20,0.95);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+        border-left: 2px solid #0ff;
+        border-radius: 10px 0 0 10px;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.4s ease;
+        z-index: 1003;
+      }
+
+      nav.active {
+        display: flex;
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Asylkhan Online.kz</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+      <a href="index.html">Басты бет</a>
+      <a href="courses.html">Курстар</a>
+      <a href="social.html">Әлеуметтік желілерім</a>
+      <a href="login.html">Кіру</a>
+      <a href="register.html">Тіркелу</a>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <form class="login-form" id="loginForm">
+      <h2>Кіру</h2>
+      <label for="name">Аты-жөні</label>
+      <input type="text" id="name" placeholder="Аты-жөніңізді енгізіңіз" required>
+
+      <label for="phone">Телефон</label>
+      <input type="tel" id="phone" placeholder="+7 777 777 77 77" required>
+
+      <button type="submit">Кіру</button>
+      <p class="error" id="errorMessage"></p>
+      <p class="register-link" id="registerLink" style="display: none;">
+        Сізде аккаунт бар ма? <a href="register.html">Тіркелу</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+    const overlay = document.querySelector(".overlay");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    // Телефон форматы
+    const phoneInput = document.getElementById("phone");
+    phoneInput.addEventListener("input", function(e) {
+      let x = this.value.replace(/\D/g, '').substring(0, 11);
+      let formatted = "+7 ";
+      if(x.length > 1) formatted += x.substring(1,4) + " ";
+      if(x.length >= 4) formatted += x.substring(4,7) + " ";
+      if(x.length >= 7) formatted += x.substring(7,9) + " ";
+      if(x.length >= 9) formatted += x.substring(9,11);
+      this.value = formatted.trim();
+    });
+
+    // Логин тексеру
+    const loginForm = document.getElementById("loginForm");
+    const errorMessage = document.getElementById("errorMessage");
+    const registerLink = document.getElementById("registerLink");
+
+    loginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+
+      const savedName = localStorage.getItem("username");
+      const savedPhone = localStorage.getItem("phone");
+
+      if (name === savedName && phone === savedPhone) {
+        alert("Сәтті кірдіңіз!");
+        window.location.href = "index.html";
+      } else {
+        errorMessage.textContent = "Сіз әлі тіркелген жоқсыз";
+        registerLink.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>

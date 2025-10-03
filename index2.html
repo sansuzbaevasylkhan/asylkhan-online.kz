@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asylkhan Online.kz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {background: #f5f5f5; color: #000;}
+
+    /* Хэдер */
+    header {
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1001;
+      border-bottom: 2px solid #0ff;
+    }
+    header h1 {
+      font-size: 18px;
+      color: #0ff;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    /* Профиль */
+    .profile {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: url("https://cdn-icons-png.flaticon.com/512/847/847969.png") center/cover no-repeat;
+      border: 2px solid #0ff;
+      cursor: pointer;
+    }
+    .profile-menu {
+      display: none;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      background: rgba(20,20,20,0.95);
+      border: 1px solid #0ff;
+      border-radius: 8px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+    .profile-menu a {
+      display: block;
+      padding: 10px;
+      color: #0ff;
+      text-decoration: none;
+    }
+    .profile-menu a:hover {
+      background: rgba(0,255,255,0.1);
+      color: #fff;
+    }
+
+    /* Гамбургер */
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0ff;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+    .overlay.active {display: block;}
+
+    .content {
+      padding-top: 70px;
+      text-align: center;
+    }
+    section {padding: 40px 15px;}
+    section h1, section h2 {color: #0ff;}
+
+    .hero-img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .faq {max-width: 600px; margin: auto; text-align: left;}
+    .faq-item {
+      background: rgba(255,255,255,0.05);
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .faq-item h3 {margin: 0; color: #0ff;}
+    .faq-item p {display: none; margin-top: 5px;}
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(20,20,20,0.95);
+        position: absolute;
+        top: 60px; right: 0;
+        width: 200px;
+        padding: 15px;
+        border-radius: 8px 0 0 8px;
+      }
+      nav.active {display: flex;}
+      .menu-toggle {display: block;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Asylkhan Online.kz</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+      <div class="profile"></div>
+      <div class="profile-menu">
+        <a href="profile.html" id="nav-profile">👤 Профиль</a>
+        <a href="settings.html" id="nav-settings">⚙️ Баптаулар</a>
+        <a href="#" id="nav-logout">🚪 Шығу</a>
+      </div>
+      <a href="index2.html" id="nav-home">Басты бет</a>
+      <a href="courses2.html" id="nav-courses">Курстар</a>
+      <a href="social2.html" id="nav-social">Әлеуметтік желілерім</a>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <section>
+      <img src="147.png" alt="Education" class="hero-img">
+      <h1 id="welcome">Қош келдіңіз!</h1>
+      <p id="desc">Asylkhan Online.kz – бұл заманауи білім платформасы.</p>
+    </section>
+
+    <section>
+      <h2 id="about-title">Автор туралы</h2>
+      <p id="about-text">Автор – Асылхан, жаңа технологияларға қызығатын жас маман.</p>
+    </section>
+
+    <section>
+      <h2 id="faq-title">Сұрақтар мен жауаптар</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3 id="q1">Бұл платформада қандай курстар бар?</h3>
+          <p id="a1">Әртүрлі тақырыптағы пайдалы онлайн курстар ұсынылады.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // FAQ
+    document.querySelectorAll(".faq-item h3").forEach(item => {
+      item.addEventListener("click", () => {
+        const p = item.nextElementSibling;
+        p.style.display = p.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    // Меню
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+    const overlay = document.querySelector(".overlay");
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+    overlay.addEventListener("click", () => {
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    // Профиль меню
+    const profile = document.querySelector(".profile");
+    const profileMenu = document.querySelector(".profile-menu");
+    profile.addEventListener("click", () => {
+      profileMenu.style.display = profileMenu.style.display === "block" ? "none" : "block";
+    });
+    document.addEventListener("click", (e) => {
+      if (!profile.contains(e.target) && !profileMenu.contains(e.target)) {
+        profileMenu.style.display = "none";
+      }
+    });
+
+    // Тіл және режим баптауын қолдану
+    function applySettings() {
+      const mode = localStorage.getItem("mode") || "dark";
+      const lang = localStorage.getItem("lang") || "kk";
+      document.body.classList.toggle("light", mode === "light");
+
+      if (lang === "kk") {
+        document.getElementById("nav-home").textContent = "Басты бет";
+        document.getElementById("nav-courses").textContent = "Курстар";
+        document.getElementById("nav-social").textContent = "Әлеуметтік желілерім";
+        document.getElementById("nav-profile").textContent = "👤 Профиль";
+        document.getElementById("nav-settings").textContent = "⚙️ Баптаулар";
+        document.getElementById("nav-logout").textContent = "🚪 Шығу";
+        document.getElementById("welcome").textContent = "Қош келдіңіз!";
+        document.getElementById("desc").textContent = "Asylkhan Online.kz – бұл заманауи білім платформасы.";
+        document.getElementById("about-title").textContent = "Автор туралы";
+        document.getElementById("about-text").textContent = "Автор – Асылхан, жаңа технологияларға қызығатын жас маман.";
+        document.getElementById("faq-title").textContent = "Сұрақтар мен жауаптар";
+        document.getElementById("q1").textContent = "Бұл платформада қандай курстар бар?";
+        document.getElementById("a1").textContent = "Әртүрлі тақырыптағы пайдалы онлайн курстар ұсынылады.";
+      } else {
+        document.getElementById("nav-home").textContent = "Главная";
+        document.getElementById("nav-courses").textContent = "Курсы";
+        document.getElementById("nav-social").textContent = "Мои соц.сети";
+        document.getElementById("nav-profile").textContent = "👤 Профиль";
+        document.getElementById("nav-settings").textContent = "⚙️ Настройки";
+        document.getElementById("nav-logout").textContent = "🚪 Выйти";
+        document.getElementById("welcome").textContent = "Добро пожаловать!";
+        document.getElementById("desc").textContent = "Asylkhan Online.kz – это современная образовательная платформа.";
+        document.getElementById("about-title").textContent = "Об авторе";
+        document.getElementById("about-text").textContent = "Автор – Асылхан, молодой специалист, увлечённый технологиями.";
+        document.getElementById("faq-title").textContent = "Вопросы и ответы";
+        document.getElementById("q1").textContent = "Какие курсы есть на платформе?";
+        document.getElementById("a1").textContent = "Предлагаются полезные онлайн-курсы по разным темам.";
+      }
+    }
+    applySettings();
+  </script>
+</body>
+</html>

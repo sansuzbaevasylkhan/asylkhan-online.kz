@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asylkhan Online.kz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    /* Хэдер */
+    header {
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      border-bottom: 2px solid #0ff;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    header h1 {
+      font-size: 22px;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    /* Негізгі меню */
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 15px #fff, 0 0 30px #0ff;
+    }
+
+    /* Гамбургер батырмасы */
+    .menu-toggle {
+      display: none;
+      font-size: 50px;
+      line-height: 1;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0ff;
+      padding: 10px 15px;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+      transition: transform 0.3s;
+      z-index: 1002;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    /* Overlay фон */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Контент төмен түсу үшін */
+    .content {
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    section h1, section h2 {
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    .hero-img {
+      max-width: 700px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .faq-item:hover {
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    .faq-item h3 {
+      margin: 0;
+      color: #0ff;
+    }
+
+    .faq-item p {
+      display: none;
+      margin-top: 10px;
+      color: #ddd;
+    }
+
+    /* Телефон/планшет стилі */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(20, 20, 20, 0.95);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 260px;
+        padding: 20px;
+        border-left: 2px solid #0ff;
+        border-radius: 10px 0 0 10px;
+
+        /* Анимация */
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.4s ease;
+        z-index: 1003;
+      }
+
+      nav.active {
+        display: flex;
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Хедер -->
+  <header>
+    <h1>Asylkhan Online.kz</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+     <a href="index.html">Басты бет</a>
+      <a href="courses.html">Курстар</a>
+      <a href="social.html">Әлеуметтік желілерім</a>
+      <a href="login.html">Кіру</a>
+      <a href="register.html">Тіркелу</a>
+    </nav>
+  </header>
+
+  <!-- Overlay фон -->
+  <div class="overlay"></div>
+
+  <!-- Контент -->
+  <div class="content">
+    <!-- Басты бет -->
+    <section id="home">
+      <img src="147.png" alt="Education Image" class="hero-img">
+      <h1>Қош келдіңіз!</h1>
+      <p>Asylkhan Online.kz – бұл заманауи білім платформасы. Мұнда сіз пайдалы курстарға, материалдарға және тәжірибеге қол жеткізе аласыз.</p>
+    </section>
+
+    <!-- Автор туралы -->
+    <section id="about">
+      <h2>Автор туралы</h2>
+      <p>Бұл платформаның авторы – Асылхан. Ол жаңа технологияларға қызығып, білім беруді заманауи стильде дамытуға бағытталған.</p>
+    </section>
+
+    <!-- Сұрақтар мен жауаптар -->
+    <section id="faq">
+      <h2>Сұрақтар мен жауаптар</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Бұл платформада қандай курстар бар?</h3>
+          <p>Әртүрлі тақырыптағы пайдалы онлайн курстар ұсынылады.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Кіру және тіркелу тегін бе?</h3>
+          <p>Иә, жүйеге кіру және тіркелу тегін.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Автор кім?</h3>
+          <p>Автор – Асылхан, ол IT, білім беру саласында тәжірибесі бар маман.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // FAQ ашу/жабу
+    document.querySelectorAll(".faq-item h3").forEach(item => {
+      item.addEventListener("click", () => {
+        const p = item.nextElementSibling;
+        p.style.display = (p.style.display === "block") ? "none" : "block";
+      });
+    });
+
+    // Гамбургер меню + overlay
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+    const overlay = document.querySelector(".overlay");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+  </script>
+</body>
+</html>
